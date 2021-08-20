@@ -1,0 +1,26 @@
+name: Build and publish my homepage
+
+# Triggers the workflow on push or pull request events but only for the main branch, or manually
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so this job can access it
+      - uses: actions/checkout@v2
+
+      # Deploy the homepage content via FTP
+      - name: Deploy via FTP
+        uses: sebastianpopp/ftp-action@v2.0.0
+        with:
+          host: ${{ secrets.FTP_HOST }}
+          user: ${{ secrets.FTP_USER }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          localDir: ./content/
+          remoteDir: .
