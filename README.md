@@ -1,6 +1,6 @@
 # Homepage
 
-Just a simple coming soon website
+My personal homepage.
 
 # Deployments
 
